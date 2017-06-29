@@ -40,7 +40,7 @@
 public Plugin myinfo = 
 {
 	name = "Reserved Slots",
-	author = "AlliedModders LLC",
+	author = "AlliedModders LLC, de_nerd",
 	description = "Provides basic reserved slots",
 	version = SOURCEMOD_VERSION,
 	url = "http://www.sourcemod.net/"
