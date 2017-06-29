@@ -113,7 +113,7 @@ public void OnClientPostAdminCheck(int client)
 {
 	int reserved = sm_reserved_slots.IntValue;
 
-	if (reserved > 0)
+	if (reserved >= 0)
 	{
 		int clients = GetClientCount(false);
 		int limit = GetMaxHumanPlayers() - reserved;
@@ -140,7 +140,11 @@ public void OnClientPostAdminCheck(int client)
 		{	
 			if (clients > limit)
 			{
-				if (flags & ADMFLAG_ROOT || flags & ADMFLAG_RESERVATION)
+				if (flags & ADMFLAG_ROOT)
+				{
+					return; // Do nothing if admin, let it connect above client limit
+				}
+				else if (flags & ADMFLAG_RESERVATION) // If not admin, but has reservation, kick someone to open slot
 				{
 					int target = SelectKickClient();
 						
